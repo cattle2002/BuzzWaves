@@ -1,0 +1,46 @@
+
+Author:
+  Author: gongzhaowei
+  Age: 22
+  Email: 2517302830@qq.com
+
+BuzzWaves:
+  IP: 127.0.0.1
+  Port: 8888
+
+Websocket:
+  OwnerIP: 127.0.0.1
+  PORT: 5500
+  Application: 客户管理程序 数据监管程序 证书监管程序
+
+# MYSQL
+Mysql:
+  IP: localhost
+  PORT: 3306
+  Application: 客户管理程序 数据监管程序 证书监管程序
+  User: root
+  Password: 123456
+
+Redis:
+  IP: 127.0.0.1
+  PORT: 6379
+  User: root
+  Password: 123456 
+
+# SqlLite
+SqlLite:
+  IP: 127.0.0.1
+  PORT: 3306
+  User: root
+  Password: 123456
+  Application: 客户管理程序 数据监管程序 证书监管程序
+
+AesKey:
+  Key: 0123456789ABCDEF
+
+# redis token 过期时间为24h
+Jwt:
+  Key: hello
+  Expire: 86400
+#Log:
+#  File: D:\gocode\BuzzWaves\logs\log.txt
