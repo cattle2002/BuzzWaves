@@ -60,7 +60,7 @@ func QueryUserNamePassword(username, password string) (*model.User, error) {
 	ep := model.User{}
 	passwd := pkkg.AesEncrypt(password)
 	err := DBM.Where("username = ? and password = ?", username, passwd).First(&ep).Error
-	fmt.Println(ep)
+	//fmt.Println(ep)
 	return &ep, err
 }
 func QueryUserEmailPassword(email, password string) (*model.User, error) {

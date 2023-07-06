@@ -3,6 +3,7 @@ package server
 import (
 	"BuzzWaves/internal/biz"
 	"BuzzWaves/internal/middleware"
+	"BuzzWaves/internal/wbsocket"
 	"BuzzWaves/pkkg"
 	"fmt"
 	"strconv"
@@ -27,12 +28,20 @@ func NewServer() *BuzzWaves {
 }
 func (buzz *BuzzWaves) BuzzBind() {
 	buzz.Engine.POST("/api/v1/user/register", biz.UserRegister)
+	buzz.Engine.GET("/api/v1/user/ws/login", biz.WebsocketMiddleware(), wbsocket.WsHandler)
+	//buzz.Engine.POST("/api/v1/user/ws/online/send/message", wbsocket.WbSendMessageOnline)
+	//buzz.Engine.GET("/api/v1/user/ws", wbsocket.WsHandler)
+	//buzz.Engine.GET("/api/v1/user/wss", biz.UserRegister)
+
 	v1 := buzz.Engine.Group("/api/v1/user")
 	{
 
 		v1.Use(middleware.JwtMiddleWare())
 		v1.POST("/name/login", biz.UserLoginUp)
 		v1.POST("/email/login", biz.UserLoginEp)
+		v1.POST("/add/user", biz.AddFriend)
+		v1.POST("/ws/online/send/message", wbsocket.WbSendMessageOnline)
+
 	}
 
 }
@@ -48,7 +57,7 @@ func (buzz *BuzzWaves) Run() {
 }
 
 //var BuzzWavesEngine *gin.Engine
-//
+
 //func NewBuzzWavesServer() {
 //	gin.SetMode(gin.ReleaseMode)
 //	BuzzWavesEngine = gin.Default()

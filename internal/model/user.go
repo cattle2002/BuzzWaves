@@ -3,7 +3,6 @@ package model
 import (
 	v1 "BuzzWaves/api/v1"
 	"BuzzWaves/pkkg"
-	"fmt"
 )
 
 func CopyReq(u *v1.UserRegisterReq) User {
@@ -25,14 +24,15 @@ func init() {
 }
 func RegisterUser(user *v1.UserRegisterReq) {
 	req := CopyReq(user)
-	fmt.Println(req)
 	req.PassWord = pkkg.AesEncrypt(req.PassWord)
-	fmt.Println("inser")
 	tx := DB.Create(&req).Debug()
 	if tx.Error != nil {
 		WriteSqlError("插入用户失败" + tx.Error.Error())
 	}
 	WriteRemoteLog("访问数据用户表User,添加用户")
+	//todo 用户注册的时候 需要往 业务用户表插入一条数据
+	AddUserToBizUser(user)
+
 }
 func UserLoginUp(up *v1.UserLoginUPReq) {
 

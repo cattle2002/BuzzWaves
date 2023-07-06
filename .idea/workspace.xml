@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="297ade36-97f8-412f-9cb5-600d5833b169" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/internal/biz/wbmiddleware.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/model/biz_user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/model/rbt/rbt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/model/status_user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/wbsocket/wbsocket.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/proto/request.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/proto/request.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/v1/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/globalVar/globalVar.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/biz/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/biz/user.go" afterDir="false" />
@@ -17,12 +25,6 @@
       <change beforePath="$PROJECT_DIR$/internal/model/model.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/model/model.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/model/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/server/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkkg/AesDEncrypt.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkkg/AesDEncrypt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkkg/AesEncrypt.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkkg/AesEncrypt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkkg/DEncrypt.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkkg/DEncrypt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkkg/Encryto.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkkg/Encryto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkkg/Jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkkg/Jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkkg/serverInfo.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkkg/serverInfo.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,24 +53,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "D:/gocode/DIMS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/gocode/justtest&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\gocode\BuzzWaves\internal\wbsocket" />
       <recent name="D:\gocode\BuzzWaves\internal\middleware" />
       <recent name="D:\gocode\BuzzWaves\internal\server" />
       <recent name="D:\gocode\BuzzWaves\internal\oooxxx" />

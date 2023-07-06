@@ -51,6 +51,7 @@ func JwtMiddleWare() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// 中间件逻辑处理
 		Authorization := c.Request.Header.Get("Authorization")
+		fmt.Println(Authorization)
 		token := SplitToken(Authorization)
 		if token != "" {
 			//todo 验证token是否有效（token是否被篡改）

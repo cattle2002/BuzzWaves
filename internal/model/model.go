@@ -10,6 +10,7 @@ import (
 	"strconv"
 )
 
+// User 用户表 后续不会使用到 只在登录 注册的业务逻辑进行用到
 type User struct {
 	gorm.Model
 	//UserName     string `json:"username" gorm:"username" `
@@ -21,6 +22,36 @@ type User struct {
 	Address      string `json:"address" gorm:"type:varchar(50);column:address"`
 	Captcha      string `json:"captcha" gorm:"type:varchar(50);column:captcha"`
 	Gender       string `json:"gender" gorm:"type:varchar(5);column:gender"`
+}
+
+// BizUser biz User 用来进行添加好友 作为friens的主表(将用户注册表的部分字段进行过滤)
+type BizUser struct {
+	gorm.Model
+	UserName  string `json:"username" gorm:"type:varchar(50);column:username"`
+	TellPhone string `json:"telephone" gorm:"type:varchar(20);column:telephone"`
+	Email     string `json:"email" gorm:"type:varchar(50);column:email"`
+	Address   string `json:"address" gorm:"type:varchar(50);column:address"`
+	Captcha   string `json:"captcha" gorm:"type:varchar(50);column:captcha"`
+	Gender    string `json:"gender" gorm:"type:varchar(5);column:gender"`
+	Friends   []Friend
+}
+
+// Friend 用户好友的存储表 作为BizUser的子表
+type Friend struct {
+	gorm.Model
+	UserName  string `json:"username" gorm:"type:varchar(50);column:username"`
+	TellPhone string `json:"telephone" gorm:"type:varchar(20);column:telephone"`
+	Email     string `json:"email" gorm:"type:varchar(50);column:email"`
+	Address   string `json:"address" gorm:"type:varchar(50);column:address"`
+	Captcha   string `json:"captcha" gorm:"type:varchar(50);column:captcha"`
+	Gender    string `json:"gender" gorm:"type:varchar(5);column:gender"`
+	//Status    string `yaml:"status" gorm:"type:varchar(5);column:status"` //存储好友是否在线
+	BizUserID uint `gorm:"foreignKey:UserID"`
+}
+type UserStatus struct {
+	UserName string `json:"username" gorm:"type:varchar(50);column:username"`
+	Status   string `json:"status" gorm:"type:varchar(20);column:status"`
+	Email    string `json:"email" gorm:"type:varchar(50);column:email"`
 }
 
 var DB *gorm.DB
@@ -35,12 +66,8 @@ func GetCLi() {
 	if err != nil {
 		panic(err)
 	}
-
-	if err != nil {
-		panic(err)
-	}
+	DB.AutoMigrate(&BizUser{}, &Friend{}, &UserStatus{})
 	// 创建 Redis 客户端实例
-
 	Rdb = redis.NewClient(&redis.Options{
 		Addr:     pkkg.GetRedisIpInfo() + ":" + strconv.Itoa(pkkg.GetRedisPortInfo()), // Redis 服务器地址和端口号
 		Password: "",                                                                  // Redis 密码（如果有）

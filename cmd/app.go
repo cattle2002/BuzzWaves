@@ -1,6 +1,10 @@
 package main
 
-import "BuzzWaves/internal/server"
+import (
+	"BuzzWaves/internal/server"
+	"BuzzWaves/internal/wbsocket"
+	"github.com/gorilla/websocket"
+)
 
 func main() {
 	// server.NewBuzzWavesServer()
@@ -37,6 +41,7 @@ func main() {
 
 	//return "", ""
 	//fmt.Println("hh", up, s)
+	wbsocket.WebSocketConns = make(map[string]*websocket.Conn, 5)
 	buzz := server.NewServer()
 	buzz.Run()
 }
