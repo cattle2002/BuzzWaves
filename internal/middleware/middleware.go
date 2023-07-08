@@ -3,7 +3,6 @@ package middleware
 import (
 	v1 "BuzzWaves/api/v1"
 	"BuzzWaves/pkkg"
-	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"strings"
@@ -92,9 +91,14 @@ func JwtMiddleWare() gin.HandlerFunc {
 					SetRedisExpireTime(user.UserName, token)
 				}
 				c.Next()
+			} else {
+				fmt.Println("------不走任何url-------------------")
+				username, _ := GetClaimsUP(token)
+				c.Set("Username", username)
+
 			}
 			//todo 拿到token之后去Redis里面查看token是否过期，如果token过期 （取数据里面查找用户是否存在，如果存在继续续期.否则完事）则继续续期
-			RdbM.Get(context.Background(), "")
+			//RdbM.Get(context.Background(), "")
 			c.Next()
 		} else {
 			//todo 用户第一次登录，没有token 需要去数据库里面查找是否用户是否存在 最后颁发token 判断登录方式
@@ -111,10 +115,13 @@ func JwtMiddleWare() gin.HandlerFunc {
 				//todo 将token保存在Redis里面 过期时间为24h
 				jwtup, _ := pkkg.GenerateJWTUP(up.UserName, up.Password)
 				SetRedisExpireTime(up.UserName, jwtup)
-				c.JSON(200, gin.H{
-					"msg":   "登录初次登录成功,请保存好token",
-					"token": jwtup,
-				})
+				//c.JSON(200, gin.H{
+				//	"msg":   "登录初次登录成功,请保存好token",
+				//	"token": jwtup,
+				//})
+				c.Set("token", jwtup)
+				c.Set("username", up.UserName)
+				c.Next()
 			} else {
 				//todo 用户第一次登录通过email password进行登录
 				ep := v1.UserLoginEPReq{}
@@ -126,10 +133,11 @@ func JwtMiddleWare() gin.HandlerFunc {
 				jwtep, _ := pkkg.GenerateJWTEP(ep.Email, ep.Password)
 				//todo
 				SetRedisExpireTime(password.UserName, jwtep)
-				c.JSON(200, gin.H{
-					"msg":   "登录初次登录成功,请保存好token",
-					"token": jwtep,
-				})
+				//c.JSON(200, gin.H{
+				//	"msg":   "登录初次登录成功,请保存好token",
+				//	"token": jwtep,
+				//})
+				c.Next()
 
 			}
 			//todo 通过邮箱和密码进行登录

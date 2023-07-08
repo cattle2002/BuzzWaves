@@ -17,6 +17,7 @@ type ServerConfig struct {
 	BuzzWaves map[string]interface{} `yaml:"BuzzWaves"`
 	AesKey    map[string]interface{} `yaml:"AesKey"`
 	Jwt       map[string]interface{} `yaml:"Jwt"`
+	Rabbitmq  map[string]interface{} `yaml:"Rabbitmq"`
 }
 
 var Config ServerConfig

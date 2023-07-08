@@ -38,9 +38,18 @@ SqlLite:
 AesKey:
   Key: 0123456789ABCDEF
 
+
+
+
 # redis token 过期时间为24h
 Jwt:
   Key: hello
   Expire: 86400
+
+Rabbitmq:
+  IP: 127.0.0.1
+  PORT: 5672
+  User: admin
+  Password: 123
 #Log:
 #  File: D:\gocode\BuzzWaves\logs\log.txt

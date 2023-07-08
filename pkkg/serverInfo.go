@@ -158,6 +158,47 @@ func GetJwtKeyExpire() int {
 	}
 }
 
+//RabbitMq:
+//IP: 127.0.0.1
+//PORT: 5672
+//User: admin
+//Password: 123
+func GetRabbitmqIP() string {
+	m, ok := config.Config.Rabbitmq["IP"].(string)
+	if !ok {
+		panic(errors.New("获取配置信息失败"))
+	} else {
+		return m
+	}
+}
+
+func GetRabbitmqPort() int {
+	m, ok := config.Config.Rabbitmq["PORT"].(int)
+	if !ok {
+		panic(errors.New("获取配置信息失败"))
+	} else {
+		return m
+	}
+}
+
+func GetRabbitmqUser() string {
+	m, ok := config.Config.Rabbitmq["User"].(string)
+	if !ok {
+		panic(errors.New("获取配置信息失败"))
+	} else {
+		return m
+	}
+}
+
+func GetRabbitmqPassword() int {
+	m, ok := config.Config.Rabbitmq["Password"].(int)
+	if !ok {
+		panic(errors.New("获取配置信息失败"))
+	} else {
+		return m
+	}
+}
+
 // //# SqlLite
 // //SqlLite:
 // //IP: localhost

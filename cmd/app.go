@@ -3,6 +3,8 @@ package main
 import (
 	"BuzzWaves/internal/server"
 	"BuzzWaves/internal/wbsocket"
+	"BuzzWaves/pkkg"
+	"fmt"
 	"github.com/gorilla/websocket"
 )
 
@@ -41,6 +43,8 @@ func main() {
 
 	//return "", ""
 	//fmt.Println("hh", up, s)
+	jwtup, _ := pkkg.GenerateJWTUP("gone", "123")
+	fmt.Println(jwtup)
 	wbsocket.WebSocketConns = make(map[string]*websocket.Conn, 5)
 	buzz := server.NewServer()
 	buzz.Run()

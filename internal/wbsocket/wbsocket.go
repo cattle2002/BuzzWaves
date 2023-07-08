@@ -4,6 +4,7 @@ import "C"
 import (
 	"BuzzWaves/internal/middleware"
 	"BuzzWaves/internal/model"
+	"BuzzWaves/internal/model/rbt"
 	"BuzzWaves/pkkg"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -107,10 +108,21 @@ func WbSendMessageOnline(c *gin.Context) {
 	f := OnlineMessageReq{}
 	c.ShouldBindJSON(&f)
 	fmt.Println(f)
+	//查询好友是否在线
 	email := QueryUserNameEmail(f.FriendName, f.Email)
 	if email == true {
 		WebSocketConns[f.FriendName+":"+f.Email].WriteMessage(websocket.TextMessage, []byte("hello,world"))
+		c.JSON(200, gin.H{
+			"msg": "发送消息成功",
+		})
 	} else {
+		username, exists := c.Get("Username")
+		if exists {
+			fmt.Println("携带的value", username)
+		}
+		queue := rbt.DeclareQueue(rbt.RabbitChannel, username.(string), f.FriendName)
+		rbt.QueryBind(rbt.RabbitChannel, queue)
+		rbt.SendMessage(rbt.RabbitChannel, "hello,world", queue)
 		c.JSON(200, gin.H{
 			"msg": "当前好友不在线",
 		})

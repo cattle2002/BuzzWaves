@@ -40,6 +40,7 @@ func (buzz *BuzzWaves) BuzzBind() {
 		v1.POST("/name/login", biz.UserLoginUp)
 		v1.POST("/email/login", biz.UserLoginEp)
 		v1.POST("/add/user", biz.AddFriend)
+		//todo 这个接口用来处理好友在线和好友不在线的消息发送问题
 		v1.POST("/ws/online/send/message", wbsocket.WbSendMessageOnline)
 
 	}
